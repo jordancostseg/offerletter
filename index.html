@@ -23,19 +23,20 @@
         .brand-bg {
             background-color: #1d4ed8;
         }
+        
+        /* REVISED: Tap/Click puzzle interaction */
         .puzzle-container {
             cursor: pointer;
         }
-        .puzzle-container #kayleigh-piece {
+        #kayleigh-piece {
+            transform: translateX(70px) rotate(10deg);
             transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
             transform-origin: center;
         }
-        .puzzle-container:hover #kayleigh-piece {
-            transform: translateX(0) scale(1.05);
+        .puzzle-container.is-solved #kayleigh-piece {
+            transform: translateX(0) scale(1.0);
         }
-        #kayleigh-piece {
-            transform: translateX(70px) rotate(10deg);
-        }
+
         .modal-enter {
             animation: modal-enter 0.3s ease-out;
         }
@@ -55,23 +56,19 @@
             -webkit-backdrop-filter: blur(10px);
         }
         
-        /* NEW: Custom styles for gradual salary font changes */
         .salary-text {
-            font-weight: 700; /* bold */
+            font-weight: 700;
             transition: color 0.3s ease, font-size 0.3s ease;
         }
-        /* Size Tiers */
-        .size-tier-1 { font-size: 0.9rem; } /* Base size */
-        .size-tier-2 { font-size: 1.0rem; } /* Slightly larger */
-        .size-tier-3 { font-size: 1.1rem; } /* Medium */
-        .size-tier-4 { font-size: 1.2rem; } /* Large, but not overpowering */
-
-        /* Color Tiers */
-        .color-tier-1 { color: #374151; } /* Gray 700 - Start */
-        .color-tier-2 { color: #1e40af; } /* Blue 800 - Deepening Blue */
-        .color-tier-3 { color: #1d4ed8; } /* Blue 700 - Brand Blue */
-        .color-tier-4 { color: #0d9488; } /* Teal 600 - High Achievement */
-        .color-tier-5 { color: #15803d; } /* Green 700 - Top Tier */
+        .size-tier-1 { font-size: 0.9rem; }
+        .size-tier-2 { font-size: 1.0rem; }
+        .size-tier-3 { font-size: 1.1rem; }
+        .size-tier-4 { font-size: 1.2rem; }
+        .color-tier-1 { color: #374151; }
+        .color-tier-2 { color: #1e40af; }
+        .color-tier-3 { color: #1d4ed8; }
+        .color-tier-4 { color: #0d9488; }
+        .color-tier-5 { color: #15803d; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800">
@@ -79,7 +76,7 @@
     <div id="password-gate" class="fixed inset-0 bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center"></div>
 
     <header class="relative">
-        <div class="hero-gradient text-white pb-24 md:pb-32 pt-12">
+        <div class="hero-gradient text-white pb-24 pt-12">
             <div class="container mx-auto px-6 text-center">
                 <img src="https://mavencostseg.com/wp-content/uploads/2025/02/Copy-of-This-space-is-for-your-headline-8.png" 
                      onerror="this.onerror=null; this.src='https://placehold.co/200x50/ffffff/1d4ed8?text=Maven+Logo';"
@@ -89,27 +86,26 @@
                 <p class="text-lg md:text-xl text-blue-200 max-w-3xl mx-auto">An official offer of employment for Kayleigh Anniballi</p>
             </div>
         </div>
-        <div class="absolute inset-x-0 -bottom-24 flex justify-center">
-             <div class="w-32 h-32 md:w-48 md:h-48 rounded-full border-8 border-white shadow-lg bg-cover bg-center" 
+        <div class="w-full flex justify-center -mt-16">
+             <div class="w-32 h-32 md:w-48 md:h-48 rounded-full border-8 border-white shadow-lg bg-cover bg-center flex-shrink-0" 
                   style="background-image: url('https://mavencostseg.com/wp-content/uploads/2025/06/Maven-Success.png'); background-color: #ccc;">
             </div>
         </div>
     </header>
 
-    <main class="container mx-auto px-6 max-w-5xl -mt-12 md:-mt-16 z-10 relative">
-        <div class="h-32 md:h-48"></div>
-
-        <section class="text-center mb-16">
+    <main class="container mx-auto px-6 max-w-5xl z-10 relative">
+        
+        <section class="text-center mb-12 pt-6">
             <h2 class="text-3xl font-bold text-gray-900 mb-4">Dear Kayleigh,</h2>
             <p class="text-lg text-gray-600 leading-relaxed max-w-4xl mx-auto">
-                On behalf of the entire team at Maven Cost Segregation, we are incredibly excited to officially offer you the position of **Client Success & Project Manager**. Your unique blend of skills in project management, client relations, and sales is exactly what we need to drive our growth and ensure our clients receive best-in-class service. We were thoroughly impressed during our conversations and believe you will be a major asset to our team.
+                On behalf of the entire team at Maven Cost Segregation, we are incredibly excited to officially offer you the position of **Client Success & Project Manager**. Your unique blend of skills is exactly what we need. We were thoroughly impressed during our conversations and believe you will be a major asset to our team.
             </p>
             <p class="text-lg text-gray-600 leading-relaxed max-w-4xl mx-auto mt-4">
                 Your anticipated start date will be **Monday, June 9, 2025**. This page outlines the key details of our offer. A formal employment agreement will be sent for your review and signature separately.
             </p>
         </section>
 
-        <section class="bg-white p-8 rounded-2xl shadow-lg border border-gray-200">
+        <section class="bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-gray-200">
             <h3 class="text-2xl font-bold text-gray-900 mb-6 border-b pb-4">Offer Summary</h3>
             <div class="space-y-8">
                 <div class="bg-gray-50 p-6 rounded-xl border border-gray-200">
@@ -140,28 +136,28 @@
                         
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 text-sm">
                             <div class="flex justify-between items-baseline border-b py-1"><span class="text-gray-600">Reps' Revenue: $250k</span><span class="salary-text size-tier-1 color-tier-1">$65,000</span></div>
-                            <div class="flex justify-between items-baseline border-b py-1"><span class="text-gray-600">Reps' Revenue: $2.75M</span><span class="salary-text size-tier-3 color-tier-3">$115,000</span></div>
                             <div class="flex justify-between items-baseline border-b py-1"><span class="text-gray-600">Reps' Revenue: $500k</span><span class="salary-text size-tier-1 color-tier-1">$70,000</span></div>
-                            <div class="flex justify-between items-baseline border-b py-1"><span class="text-gray-600">Reps' Revenue: $3.00M</span><span class="salary-text size-tier-3 color-tier-4">$120,000</span></div>
                             <div class="flex justify-between items-baseline border-b py-1"><span class="text-gray-600">Reps' Revenue: $750k</span><span class="salary-text size-tier-1 color-tier-1">$75,000</span></div>
-                            <div class="flex justify-between items-baseline border-b py-1"><span class="text-gray-600">Reps' Revenue: $3.25M</span><span class="salary-text size-tier-3 color-tier-4">$125,000</span></div>
                             <div class="flex justify-between items-baseline border-b py-1"><span class="text-gray-600">Reps' Revenue: $1.00M</span><span class="salary-text size-tier-2 color-tier-2">$80,000</span></div>
-                            <div class="flex justify-between items-baseline border-b py-1"><span class="text-gray-600">Reps' Revenue: $3.50M</span><span class="salary-text size-tier-3 color-tier-4">$130,000</span></div>
                             <div class="flex justify-between items-baseline border-b py-1"><span class="text-gray-600">Reps' Revenue: $1.25M</span><span class="salary-text size-tier-2 color-tier-2">$85,000</span></div>
-                            <div class="flex justify-between items-baseline border-b py-1"><span class="text-gray-600">Reps' Revenue: $3.75M</span><span class="salary-text size-tier-3 color-tier-4">$135,000</span></div>
                             <div class="flex justify-between items-baseline border-b py-1"><span class="text-gray-600">Reps' Revenue: $1.50M</span><span class="salary-text size-tier-2 color-tier-2">$90,000</span></div>
-                            <div class="flex justify-between items-baseline border-b py-1"><span class="text-gray-600">Reps' Revenue: $4.00M</span><span class="salary-text size-tier-4 color-tier-5">$140,000</span></div>
                             <div class="flex justify-between items-baseline border-b py-1"><span class="text-gray-600">Reps' Revenue: $1.75M</span><span class="salary-text size-tier-2 color-tier-2">$95,000</span></div>
-                            <div class="flex justify-between items-baseline border-b py-1"><span class="text-gray-600">Reps' Revenue: $4.25M</span><span class="salary-text size-tier-4 color-tier-5">$145,000</span></div>
                             <div class="flex justify-between items-baseline border-b py-1"><span class="text-gray-600">Reps' Revenue: $2.00M</span><span class="salary-text size-tier-3 color-tier-3">$100,000</span></div>
-                            <div class="flex justify-between items-baseline border-b py-1"><span class="text-gray-600">Reps' Revenue: $4.50M</span><span class="salary-text size-tier-4 color-tier-5">$150,000</span></div>
                             <div class="flex justify-between items-baseline border-b py-1"><span class="text-gray-600">Reps' Revenue: $2.25M</span><span class="salary-text size-tier-3 color-tier-3">$105,000</span></div>
-                            <div class="flex justify-between items-baseline border-b py-1"><span class="text-gray-600">Reps' Revenue: $4.75M</span><span class="salary-text size-tier-4 color-tier-5">$155,000</span></div>
                             <div class="flex justify-between items-baseline border-b py-1"><span class="text-gray-600">Reps' Revenue: $2.50M</span><span class="salary-text size-tier-3 color-tier-3">$110,000</span></div>
+                            <div class="flex justify-between items-baseline border-b py-1"><span class="text-gray-600">Reps' Revenue: $2.75M</span><span class="salary-text size-tier-3 color-tier-3">$115,000</span></div>
+                            <div class="flex justify-between items-baseline border-b py-1"><span class="text-gray-600">Reps' Revenue: $3.00M</span><span class="salary-text size-tier-3 color-tier-4">$120,000</span></div>
+                            <div class="flex justify-between items-baseline border-b py-1"><span class="text-gray-600">Reps' Revenue: $3.25M</span><span class="salary-text size-tier-3 color-tier-4">$125,000</span></div>
+                            <div class="flex justify-between items-baseline border-b py-1"><span class="text-gray-600">Reps' Revenue: $3.50M</span><span class="salary-text size-tier-3 color-tier-4">$130,000</span></div>
+                            <div class="flex justify-between items-baseline border-b py-1"><span class="text-gray-600">Reps' Revenue: $3.75M</span><span class="salary-text size-tier-3 color-tier-4">$135,000</span></div>
+                            <div class="flex justify-between items-baseline border-b py-1"><span class="text-gray-600">Reps' Revenue: $4.00M</span><span class="salary-text size-tier-4 color-tier-5">$140,000</span></div>
+                            <div class="flex justify-between items-baseline border-b py-1"><span class="text-gray-600">Reps' Revenue: $4.25M</span><span class="salary-text size-tier-4 color-tier-5">$145,000</span></div>
+                            <div class="flex justify-between items-baseline border-b py-1"><span class="text-gray-600">Reps' Revenue: $4.50M</span><span class="salary-text size-tier-4 color-tier-5">$150,000</span></div>
+                            <div class="flex justify-between items-baseline border-b py-1"><span class="text-gray-600">Reps' Revenue: $4.75M</span><span class="salary-text size-tier-4 color-tier-5">$155,000</span></div>
                             <div class="flex justify-between items-baseline border-b py-1"><span class="text-gray-600">Reps' Revenue: $5.00M</span><span class="salary-text size-tier-4 color-tier-5">$160,000</span></div>
                         </div>
 
-                        <p class="text-xs text-gray-500 mt-4"><strong>Note:</strong> Your base salary will be reviewed annually and adjusted to reflect the cumulative, ongoing revenue from the sales team you build. As long as the reps you hire remain with the company and perform, their revenue counts towards your salary tier in perpetuity.</p>
+                        <p class="text-xs text-gray-500 mt-4"><strong>Note:</strong> Your base salary will be reviewed annually and adjusted to reflect the cumulative, ongoing revenue from the sales team you build.</p>
                     </div>
                 </div>
 
@@ -178,9 +174,8 @@
             <h3 class="text-2xl font-bold text-gray-900 mb-6">The Perfect Fit</h3>
             <p class="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto mb-8">
                 We don't just see this as filling a role; we see it as bringing in a key player who will be a force multiplier for our entire team. Your ability to manage projects while driving sales is a rare combination that we believe is essential to our next stage of growth.
-                As a core part of our future, you will also be eligible to participate in the company's future stock option plan, with a detailed offer to come.
             </p>
-            <div class="flex justify-center items-center puzzle-container">
+            <div id="puzzle-interaction" class="flex justify-center items-center puzzle-container">
                 <svg width="250" height="120" viewBox="0 0 250 120">
                     <g id="maven-piece">
                         <path d="M 50 20 L 125 20 L 125 45 C 115 45 115 55 125 55 L 125 80 L 50 80 Z" fill="#1d4ed8" stroke="#ffffff" stroke-width="2"/>
@@ -213,7 +208,6 @@
                 </button>
             </div>
         </footer>
-
     </main>
     
     <div id="email-modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center p-4 hidden z-50">
@@ -224,7 +218,7 @@
                 </svg>
             </div>
             <h3 class="text-2xl font-bold text-gray-900">Make it Official!</h3>
-            <p class="text-gray-600 mt-2">To accept, send an email to Sean with the phrase "LFG!" (or whatever you'd like). Click the button below to open a pre-filled email.</p>
+            <p class="text-gray-600 mt-2">To accept, click the button below to open a pre-filled acceptance email.</p>
             <a id="mailto-link" href="mailto:sean@mavencostseg.com?subject=I'm%20in!%20(Offer%20Accepted)&body=LFG!%0D%0A%0D%0A--%0D%0AHi%20Sean%20and%20Jordan,%0D%0A%0D%0AI'm%20thrilled%20to%20accept%20the%20offer%20for%20the%20Client%20Success%20&%20Project%20Manager%20position.%20Let's%20get%20started!%0D%0A%0D%0ABest,%0D%0AKayleigh" class="mt-6 w-full block brand-bg text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-800 transition">
                 Send Acceptance Email
             </a>
@@ -235,51 +229,61 @@
     </div>
 
     <script>
-        const passwordGate = document.getElementById('password-gate');
-        const correctPassword = 'LFG';
+        document.addEventListener('DOMContentLoaded', function () {
+            // Password Gate
+            const passwordGate = document.getElementById('password-gate');
+            const correctPassword = 'LFG';
 
-        function checkPassword() {
-            while (true) {
-                const enteredPassword = prompt('Please enter the password to view this offer:');
-                if (enteredPassword && enteredPassword.toUpperCase() === correctPassword) {
-                    passwordGate.style.display = 'none';
-                    break; 
-                } else if (enteredPassword === null) {
-                } else {
-                     alert('Incorrect password. Please try again.');
+            function checkPassword() {
+                while (true) {
+                    const enteredPassword = prompt('Please enter the password to view this offer:');
+                    if (enteredPassword && enteredPassword.toUpperCase() === correctPassword) {
+                        passwordGate.style.display = 'none';
+                        break; 
+                    } else if (enteredPassword === null) {
+                        // Keep looping if user clicks cancel
+                    } else {
+                         alert('Incorrect password. Please try again.');
+                    }
                 }
             }
-        }
-        
-        window.onload = checkPassword;
+            checkPassword();
 
-        const acceptBtn = document.getElementById('accept-offer-btn');
-        const closeModalBtn = document.getElementById('close-modal-btn');
-        const modal = document.getElementById('email-modal');
-        const modalContent = modal.querySelector('div[class*="modal-enter"]');
+            // Modal script
+            const acceptBtn = document.getElementById('accept-offer-btn');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const modal = document.getElementById('email-modal');
+            const modalContent = modal.querySelector('div[class*="modal-enter"]');
 
-        acceptBtn.addEventListener('click', () => {
-            modal.classList.remove('hidden');
-            modalContent.classList.add('modal-enter');
-            modalContent.classList.remove('modal-leave');
-        });
+            acceptBtn.addEventListener('click', () => {
+                modal.classList.remove('hidden');
+                modalContent.classList.add('modal-enter');
+                modalContent.classList.remove('modal-leave');
+            });
 
-        const closeModal = () => {
-            modalContent.classList.add('modal-leave');
-            modalContent.classList.remove('modal-enter');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-            }, 300);
-        }
+            const closeModal = () => {
+                modalContent.classList.add('modal-leave');
+                modalContent.classList.remove('modal-enter');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300);
+            }
 
-        closeModalBtn.addEventListener('click', closeModal);
-        
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                closeModal();
+            closeModalBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            // NEW: Puzzle interaction script
+            const puzzle = document.getElementById('puzzle-interaction');
+            if(puzzle) {
+                puzzle.addEventListener('click', () => {
+                    puzzle.classList.toggle('is-solved');
+                });
             }
         });
-
     </script>
 </body>
 </html>

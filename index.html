@@ -24,17 +24,16 @@
             background-color: #1d4ed8;
         }
         
-        /* REVISED: Tap/Click puzzle interaction */
         .puzzle-container {
             cursor: pointer;
         }
         #kayleigh-piece {
-            transform: translateX(70px) rotate(10deg);
-            transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            transform: translateX(75px) rotate(10deg);
+            transition: transform 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
             transform-origin: center;
         }
         .puzzle-container.is-solved #kayleigh-piece {
-            transform: translateX(0) scale(1.0);
+            transform: translateX(0) rotate(0deg);
         }
 
         .modal-enter {
@@ -86,8 +85,8 @@
                 <p class="text-lg md:text-xl text-blue-200 max-w-3xl mx-auto">An official offer of employment for Kayleigh Anniballi</p>
             </div>
         </div>
-        <div class="w-full flex justify-center -mt-16">
-             <div class="w-32 h-32 md:w-48 md:h-48 rounded-full border-8 border-white shadow-lg bg-cover bg-center flex-shrink-0" 
+        <div class="w-full flex justify-center" style="margin-top: -5rem; /* Adjusted for larger image */">
+             <div class="w-40 h-40 md:w-52 md:h-52 rounded-full border-8 border-white shadow-lg bg-cover bg-center flex-shrink-0" 
                   style="background-image: url('https://mavencostseg.com/wp-content/uploads/2025/06/Maven-Success.png'); background-color: #ccc;">
             </div>
         </div>
@@ -95,7 +94,7 @@
 
     <main class="container mx-auto px-6 max-w-5xl z-10 relative">
         
-        <section class="text-center mb-12 pt-6">
+        <section class="text-center mb-12 pt-8">
             <h2 class="text-3xl font-bold text-gray-900 mb-4">Dear Kayleigh,</h2>
             <p class="text-lg text-gray-600 leading-relaxed max-w-4xl mx-auto">
                 On behalf of the entire team at Maven Cost Segregation, we are incredibly excited to officially offer you the position of **Client Success & Project Manager**. Your unique blend of skills is exactly what we need. We were thoroughly impressed during our conversations and believe you will be a major asset to our team.
@@ -156,11 +155,9 @@
                             <div class="flex justify-between items-baseline border-b py-1"><span class="text-gray-600">Reps' Revenue: $4.75M</span><span class="salary-text size-tier-4 color-tier-5">$155,000</span></div>
                             <div class="flex justify-between items-baseline border-b py-1"><span class="text-gray-600">Reps' Revenue: $5.00M</span><span class="salary-text size-tier-4 color-tier-5">$160,000</span></div>
                         </div>
-
                         <p class="text-xs text-gray-500 mt-4"><strong>Note:</strong> Your base salary will be reviewed annually and adjusted to reflect the cumulative, ongoing revenue from the sales team you build.</p>
                     </div>
                 </div>
-
                 <div class="bg-gray-50 border border-gray-200 rounded-xl p-4 flex items-center space-x-3">
                     <svg class="h-6 w-6 text-gray-400 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
@@ -176,14 +173,14 @@
                 We don't just see this as filling a role; we see it as bringing in a key player who will be a force multiplier for our entire team. Your ability to manage projects while driving sales is a rare combination that we believe is essential to our next stage of growth.
             </p>
             <div id="puzzle-interaction" class="flex justify-center items-center puzzle-container">
-                <svg width="250" height="120" viewBox="0 0 250 120">
+                <svg width="250" height="120" viewBox="0 0 260 130">
                     <g id="maven-piece">
-                        <path d="M 50 20 L 125 20 L 125 45 C 115 45 115 55 125 55 L 125 80 L 50 80 Z" fill="#1d4ed8" stroke="#ffffff" stroke-width="2"/>
-                        <text x="87.5" y="55" font-family="Inter, sans-serif" font-weight="600" font-size="16" fill="white" text-anchor="middle">Maven</text>
+                        <path d="M20 35 H130 V50 A 25 25, 0, 0, 1, 130 80 V95 H20 Z" fill="#2563eb" stroke="#ffffff" stroke-width="2"/>
+                        <text x="75" y="70" font-family="Inter, sans-serif" font-weight="600" font-size="20" fill="white" text-anchor="middle">Maven</text>
                     </g>
                     <g id="kayleigh-piece">
-                        <path d="M 125 20 L 200 20 L 200 80 L 125 80 L 125 55 C 135 55 135 45 125 45 Z" fill="#4ade80" stroke="#ffffff" stroke-width="2"/>
-                        <text x="162.5" y="55" font-family="Inter, sans-serif" font-weight="600" font-size="16" fill="white" text-anchor="middle">Kayleigh</text>
+                        <path d="M130 35 H240 V95 H130 V80 A 25 25, 0, 0, 0, 130 50 V35 Z" fill="#86efac" stroke="#ffffff" stroke-width="2"/>
+                        <text x="185" y="70" font-family="Inter, sans-serif" font-weight="600" font-size="20" fill="white" text-anchor="middle">Kayleigh</text>
                     </g>
                 </svg>
             </div>
@@ -230,7 +227,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Password Gate
             const passwordGate = document.getElementById('password-gate');
             const correctPassword = 'LFG';
 
@@ -241,7 +237,6 @@
                         passwordGate.style.display = 'none';
                         break; 
                     } else if (enteredPassword === null) {
-                        // Keep looping if user clicks cancel
                     } else {
                          alert('Incorrect password. Please try again.');
                     }
@@ -249,7 +244,6 @@
             }
             checkPassword();
 
-            // Modal script
             const acceptBtn = document.getElementById('accept-offer-btn');
             const closeModalBtn = document.getElementById('close-modal-btn');
             const modal = document.getElementById('email-modal');
@@ -276,7 +270,6 @@
                 }
             });
 
-            // NEW: Puzzle interaction script
             const puzzle = document.getElementById('puzzle-interaction');
             if(puzzle) {
                 puzzle.addEventListener('click', () => {

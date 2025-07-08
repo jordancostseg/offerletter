@@ -9,10 +9,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Warm Neutrals (Background: Slate, Accent: Indigo) -->
-    <!-- Application Structure Plan: A single-page, top-down narrative structure that guides the candidate through the offer. It starts with a welcome, details the role, presents the core interactive compensation explorer, visualizes the data with a dynamic chart, explains long-term benefits, and concludes with next steps. This flow is designed to be intuitive and engaging, allowing the candidate to easily compare options and understand their potential by putting them in control of the projections via an interactive slider. This is superior to a static document as it fosters exploration and personal investment in the decision-making process. -->
-    <!-- Visualization & Content Choices: Report Info: Three distinct compensation packages and earnings projections. -> Goal: Allow easy comparison and exploration of financial outcomes. -> Viz/Presentation Method: Interactive cards for each offer, a master slider for sales input, and a dynamic Chart.js bar chart for visualization. -> Interaction: Dragging the slider instantly recalculates and updates the earnings displayed on the cards and the chart. -> Justification: This interactive model empowers the candidate to test any scenario, making the abstract numbers tangible and personal. It directly answers the core question "What could I earn?" in a powerful, visual way. -> Library/Method: Vanilla JS for logic, Tailwind for layout, Chart.js (Canvas) for visualization. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -53,151 +49,192 @@
     </style>
 </head>
 <body class="text-slate-800">
+    <div id="password-overlay" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/80 backdrop-blur-sm">
+        <div class="bg-white w-full max-w-sm p-8 rounded-2xl shadow-2xl">
+            <h3 class="text-xl font-bold text-slate-900 text-center">Enter Access Code</h3>
+            <p class="text-center text-slate-500 text-sm mt-2">Please enter the password to view this offer.</p>
+            <div class="mt-6">
+                <input type="password" id="password-input" class="w-full px-4 py-3 text-lg border-2 border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition" placeholder="Password...">
+                <p id="password-error" class="text-red-500 text-sm text-center mt-2 h-5"></p>
+                <button id="password-submit" class="w-full bg-indigo-600 text-white font-bold py-3 px-4 rounded-lg mt-2 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors">
+                    View Offer
+                </button>
+            </div>
+        </div>
+    </div>
+    <div id="main-content" class="hidden">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
 
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+            <header class="text-center mb-16">
+                <h1 class="text-4xl sm:text-5xl font-bold text-slate-900">Maven Cost Segregation</h1>
+                <p class="mt-4 text-lg text-slate-600">An Invitation to Build With Us</p>
+            </header>
 
-        <header class="text-center mb-16">
-            <h1 class="text-4xl sm:text-5xl font-bold text-slate-900">Maven Cost Segregation</h1>
-            <p class="mt-4 text-lg text-slate-600">An Invitation to Build With Us</p>
-        </header>
-
-        <main>
-         
-            <section id="introduction" class="max-w-3xl mx-auto mb-16">
-                <h2 class="text-2xl font-bold text-slate-900 mb-2">Subject: An Invitation to Partner with Maven</h2>
-                <p class="text-slate-600 mb-4">Date: July 8, 2025</p>
-                <p class="text-lg font-semibold text-slate-800 mb-4">Dear Erik,</p>
-                <p class="text-slate-700 leading-relaxed">
-                    Sean and I are writing to formally offer you what we see as a foundational partnership at Maven.
-                </p>
-                <p class="mt-4 text-slate-700 leading-relaxed">
-                    To be direct, our conversations left a real impression. It’s clear you have a deep understanding of this industry, but what stood out was your strategic approach to the business. We left those talks convinced that you are the kind of person we want to build this company with.
-                </p>
-                <p class="mt-4 text-slate-700 leading-relaxed">
-                    We’re at a critical point. We have the engineering and technical foundation to be the best firm in the country. Now, we’re looking for a key partner to build out the sales side. For us, that's you.
-                </p>
-                 <p class="mt-4 text-slate-700 leading-relaxed">
-                    Crucially, we want to build this role around *you*. We see several great ways this partnership could look, and we’re equally excited about both. You could be our lead rainmaker, focusing entirely on what you do best—driving major accounts and being our top producer. Or, if you have the ambition for it, you could take on the challenge of building a team, with the override structure in place to reward that leadership.
-                </p>
-                <p class="mt-4 text-slate-700 leading-relaxed">
-                   The path you take is up to you. Our priority is bringing you on board and creating an opportunity where you can thrive, do work you enjoy, and have a significant stake in our mutual success.
-                </p>
-            </section>
-
-            <section id="role" class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200/80 max-w-4xl mx-auto mb-16">
-                <h3 class="text-2xl font-bold text-slate-900 mb-6 text-center">Your Role: Director of National Sales</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
-                    <div class="p-4">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 text-indigo-600 mx-auto mb-4">
-                            <span>&#x1F4C8;</span>
-                        </div>
-                        <h4 class="font-semibold text-slate-800">Develop Strategy</h4>
-                        <p class="text-sm text-slate-600 mt-1">Develop and execute the national sales strategy.</p>
-                    </div>
-                    <div class="p-4">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 text-indigo-600 mx-auto mb-4">
-                            <span>&#x1F4B0;</span>
-                        </div>
-                        <h4 class="font-semibold text-slate-800">Drive Revenue</h4>
-                        <p class="text-sm text-slate-600 mt-1">Drive revenue through personal client acquisition.</p>
-                    </div>
-                    <div class="p-4">
-                        <div class="flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 text-indigo-600 mx-auto mb-4">
-                            <span>&#x1F46A;</span>
-                        </div>
-                        <h4 class="font-semibold text-slate-800">Build a Team</h4>
-                        <p class="text-sm text-slate-600 mt-1">Recruit, train, and lead a team of sales representatives.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="compensation-explorer" class="mb-16">
-                <div class="text-center mb-12">
-                    <h3 class="text-3xl font-bold text-slate-900">Interactive Compensation Explorer</h3>
-                    <p class="mt-3 text-lg text-slate-600 max-w-2xl mx-auto">Use the slider to project your annual earnings. See how your income changes across three distinct packages based on your performance.</p>
-                </div>
-                
-                <div class="max-w-3xl mx-auto p-6 bg-white rounded-2xl shadow-sm border border-slate-200/80 mb-10">
-                    <label for="sales-slider" class="block text-lg font-semibold text-slate-800 mb-2">Projected Annual Personal Sales</label>
-                    <div class="flex items-center space-x-4">
-                        <input id="sales-slider" type="range" min="100000" max="2500000" value="750000" step="50000" class="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer">
-                        <span id="slider-value" class="text-xl font-bold text-indigo-600 w-40 text-right">$750,000</span>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                    <!-- Offer 1 -->
-                    <div id="offer-1-card" class="bg-white rounded-2xl p-8 border-2 border-indigo-600 shadow-lg relative transform scale-105">
-                        <div class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 px-4 py-1 bg-indigo-600 text-white text-sm font-semibold rounded-full">Recommended</div>
-                        <h4 class="text-xl font-bold text-slate-900">Offer 1: Director Package</h4>
-                        <p class="text-slate-600 mt-1">Low Risk, High Stability</p>
-                        <div class="mt-6 text-center">
-                            <p class="text-slate-600 text-sm">Potential Earnings</p>
-                            <p id="offer-1-earnings" class="text-4xl font-bold text-indigo-600 my-2">$262,500</p>
-                        </div>
-                        <ul class="mt-6 space-y-3 text-sm">
-                            <li class="flex items-center"><span class="w-4 h-4 rounded-full bg-indigo-200 mr-3 flex-shrink-0"></span><span class="font-semibold mr-2">$75,000</span> Guaranteed Salary</li>
-                            <li class="flex items-center"><span class="w-4 h-4 rounded-full bg-indigo-200 mr-3 flex-shrink-0"></span><span class="font-semibold mr-2">25%</span> Personal Commission (Lifetime)</li>
-                            <li class="flex items-center"><span class="w-4 h-4 rounded-full bg-indigo-200 mr-3 flex-shrink-0"></span><span class="font-semibold mr-2">5%</span> Team Override (Lifetime)</li>
-                        </ul>
-                    </div>
-                    <!-- Offer 2 -->
-                    <div id="offer-2-card" class="bg-white rounded-2xl p-8 border border-slate-200/80 shadow-sm">
-                        <h4 class="text-xl font-bold text-slate-900">Offer 2: Producer Package</h4>
-                        <p class="text-slate-600 mt-1">Medium Risk, Higher Reward</p>
-                        <div class="mt-6 text-center">
-                            <p class="text-slate-600 text-sm">Potential Earnings</p>
-                            <p id="offer-2-earnings" class="text-4xl font-bold text-slate-800 my-2">$225,000</p>
-                        </div>
-                         <ul class="mt-6 space-y-3 text-sm">
-                            <li class="flex items-center"><span class="w-4 h-4 rounded-full bg-slate-200 mr-3 flex-shrink-0"></span><span class="font-semibold mr-2">$75,000</span> Recoverable Draw</li>
-                            <li class="flex items-center"><span class="w-4 h-4 rounded-full bg-slate-200 mr-3 flex-shrink-0"></span><span class="font-semibold mr-2">30%</span> Personal Commission (Lifetime)</li>
-                            <li class="flex items-center"><span class="w-4 h-4 rounded-full bg-slate-200 mr-3 flex-shrink-0"></span><span class="font-semibold mr-2">5%</span> Team Override (Lifetime)</li>
-                        </ul>
-                    </div>
-                    <!-- Offer 3 -->
-                    <div id="offer-3-card" class="bg-white rounded-2xl p-8 border border-slate-200/80 shadow-sm">
-                        <h4 class="text-xl font-bold text-slate-900">Offer 3: Partner Package</h4>
-                        <p class="text-slate-600 mt-1">High Risk, Highest Reward</p>
-                        <div class="mt-6 text-center">
-                            <p class="text-slate-600 text-sm">Potential Earnings</p>
-                            <p id="offer-3-earnings" class="text-4xl font-bold text-slate-800 my-2">$300,000</p>
-                        </div>
-                         <ul class="mt-6 space-y-3 text-sm">
-                            <li class="flex items-center"><span class="w-4 h-4 rounded-full bg-slate-200 mr-3 flex-shrink-0"></span><span class="font-semibold mr-2">$0</span> Base Salary</li>
-                            <li class="flex items-center"><span class="w-4 h-4 rounded-full bg-slate-200 mr-3 flex-shrink-0"></span><span class="font-semibold mr-2">40%</span> Personal Commission (Lifetime)</li>
-                            <li class="flex items-center"><span class="w-4 h-4 rounded-full bg-slate-200 mr-3 flex-shrink-0"></span><span class="font-semibold mr-2">5%</span> Team Override (Lifetime)</li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
+            <main>
             
-            <section id="earnings-chart" class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200/80 max-w-4xl mx-auto mb-16">
-                 <h3 class="text-2xl font-bold text-slate-900 mb-6 text-center">Earnings Projection Visualizer</h3>
-                <div class="chart-container">
-                    <canvas id="compensationChart"></canvas>
-                </div>
-            </section>
+                <section id="introduction" class="max-w-3xl mx-auto mb-16">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-2">Subject: An Invitation to Partner with Maven</h2>
+                    <p class="text-slate-600 mb-4">Date: July 8, 2025</p>
+                    <p class="text-lg font-semibold text-slate-800 mb-4">Dear Erik,</p>
+                    <p class="text-slate-700 leading-relaxed">
+                        Sean and I are writing to formally offer you what we see as a foundational partnership at Maven.
+                    </p>
+                    <p class="mt-4 text-slate-700 leading-relaxed">
+                        To be direct, our conversations left a real impression. It’s clear you have a deep understanding of this industry, but what stood out was your strategic approach to the business. We left those talks convinced that you are the kind of person we want to build this company with.
+                    </p>
+                    <p class="mt-4 text-slate-700 leading-relaxed">
+                        We’re at a critical point. We have the engineering and technical foundation to be the best firm in the country. Now, we’re looking for a key partner to build out the sales side. For us, that's you.
+                    </p>
+                    <p class="mt-4 text-slate-700 leading-relaxed">
+                        Crucially, we want to build this role around *you*. We see several great ways this partnership could look, and we’re equally excited about both. You could be our lead rainmaker, focusing entirely on what you do best—driving major accounts and being our top producer. Or, if you have the ambition for it, you could take on the challenge of building a team, with the override structure in place to reward that leadership.
+                    </p>
+                    <p class="mt-4 text-slate-700 leading-relaxed">
+                        The path you take is up to you. Our priority is bringing you on board and creating an opportunity where you can thrive, do work you enjoy, and have a significant stake in our mutual success.
+                    </p>
+                </section>
 
-            <section id="long-term-value" class="max-w-3xl mx-auto text-center">
-                <h3 class="text-3xl font-bold text-slate-900">Your Stake in Our Success</h3>
-                <p class="mt-3 text-lg text-slate-600 leading-relaxed">
-                    As a foundational member of the leadership team, you will be eligible to participate in Maven's future employee stock option plan. We believe those who build the company should share in its success.
-                </p>
-                <p class="mt-4 text-md font-semibold text-indigo-600 bg-indigo-50 inline-block p-3 rounded-lg">Details on the equity plan will be provided as it is formalized.</p>
-            </section>
-        </main>
+                <section id="role" class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200/80 max-w-4xl mx-auto mb-16">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-6 text-center">Your Role: Director of National Sales</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
+                        <div class="p-4">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 text-indigo-600 mx-auto mb-4">
+                                <span>&#x1F4C8;</span>
+                            </div>
+                            <h4 class="font-semibold text-slate-800">Develop Strategy</h4>
+                            <p class="text-sm text-slate-600 mt-1">Develop and execute the national sales strategy.</p>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 text-indigo-600 mx-auto mb-4">
+                                <span>&#x1F4B0;</span>
+                            </div>
+                            <h4 class="font-semibold text-slate-800">Drive Revenue</h4>
+                            <p class="text-sm text-slate-600 mt-1">Drive revenue through personal client acquisition.</p>
+                        </div>
+                        <div class="p-4">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 text-indigo-600 mx-auto mb-4">
+                                <span>&#x1F46A;</span>
+                            </div>
+                            <h4 class="font-semibold text-slate-800">Build a Team</h4>
+                            <p class="text-sm text-slate-600 mt-1">Recruit, train, and lead a team of sales representatives.</p>
+                        </div>
+                    </div>
+                </section>
 
-        <footer class="text-center mt-20 pt-10 border-t border-slate-200">
-            <h4 class="text-2xl font-bold text-slate-900">Ready to Discuss?</h4>
-            <p class="mt-3 text-slate-600">We are excited about the possibility of you joining our team. Please review this proposal,<br>and let's schedule a time to connect this week.</p>
-            <p class="mt-6 font-semibold text-slate-800">Jordan Kapper, MD & Sean Graham, CPA</p>
-            <p class="text-sm text-slate-500">Maven Cost Segregation</p>
-        </footer>
+                <section id="compensation-explorer" class="mb-16">
+                    <div class="text-center mb-12">
+                        <h3 class="text-3xl font-bold text-slate-900">Interactive Compensation Explorer</h3>
+                        <p class="mt-3 text-lg text-slate-600 max-w-2xl mx-auto">Use the slider to project your annual earnings. See how your income changes across three distinct packages based on your performance.</p>
+                    </div>
+                    
+                    <div class="max-w-3xl mx-auto p-6 bg-white rounded-2xl shadow-sm border border-slate-200/80 mb-10">
+                        <label for="sales-slider" class="block text-lg font-semibold text-slate-800 mb-2">Projected Annual Personal Sales</label>
+                        <div class="flex items-center space-x-4">
+                            <input id="sales-slider" type="range" min="100000" max="2500000" value="750000" step="50000" class="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                            <span id="slider-value" class="text-xl font-bold text-indigo-600 w-40 text-right">$750,000</span>
+                        </div>
+                    </div>
 
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                        <div id="offer-1-card" class="bg-white rounded-2xl p-8 border-2 border-indigo-600 shadow-lg relative transform scale-105">
+                            <div class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 px-4 py-1 bg-indigo-600 text-white text-sm font-semibold rounded-full">Recommended</div>
+                            <h4 class="text-xl font-bold text-slate-900">Offer 1: Director Package</h4>
+                            <p class="text-slate-600 mt-1">Low Risk, High Stability</p>
+                            <div class="mt-6 text-center">
+                                <p class="text-slate-600 text-sm">Potential Earnings</p>
+                                <p id="offer-1-earnings" class="text-4xl font-bold text-indigo-600 my-2">$262,500</p>
+                            </div>
+                            <ul class="mt-6 space-y-3 text-sm">
+                                <li class="flex items-center"><span class="w-4 h-4 rounded-full bg-indigo-200 mr-3 flex-shrink-0"></span><span class="font-semibold mr-2">$75,000</span> Guaranteed Salary</li>
+                                <li class="flex items-center"><span class="w-4 h-4 rounded-full bg-indigo-200 mr-3 flex-shrink-0"></span><span class="font-semibold mr-2">25%</span> Personal Commission (Lifetime)</li>
+                                <li class="flex items-center"><span class="w-4 h-4 rounded-full bg-indigo-200 mr-3 flex-shrink-0"></span><span class="font-semibold mr-2">5%</span> Team Override (Lifetime)</li>
+                            </ul>
+                        </div>
+                        <div id="offer-2-card" class="bg-white rounded-2xl p-8 border border-slate-200/80 shadow-sm">
+                            <h4 class="text-xl font-bold text-slate-900">Offer 2: Producer Package</h4>
+                            <p class="text-slate-600 mt-1">Medium Risk, Higher Reward</p>
+                            <div class="mt-6 text-center">
+                                <p class="text-slate-600 text-sm">Potential Earnings</p>
+                                <p id="offer-2-earnings" class="text-4xl font-bold text-slate-800 my-2">$225,000</p>
+                            </div>
+                            <ul class="mt-6 space-y-3 text-sm">
+                                <li class="flex items-center"><span class="w-4 h-4 rounded-full bg-slate-200 mr-3 flex-shrink-0"></span><span class="font-semibold mr-2">$75,000</span> Recoverable Draw</li>
+                                <li class="flex items-center"><span class="w-4 h-4 rounded-full bg-slate-200 mr-3 flex-shrink-0"></span><span class="font-semibold mr-2">30%</span> Personal Commission (Lifetime)</li>
+                                <li class="flex items-center"><span class="w-4 h-4 rounded-full bg-slate-200 mr-3 flex-shrink-0"></span><span class="font-semibold mr-2">5%</span> Team Override (Lifetime)</li>
+                            </ul>
+                        </div>
+                        <div id="offer-3-card" class="bg-white rounded-2xl p-8 border border-slate-200/80 shadow-sm">
+                            <h4 class="text-xl font-bold text-slate-900">Offer 3: Partner Package</h4>
+                            <p class="text-slate-600 mt-1">High Risk, Highest Reward</p>
+                            <div class="mt-6 text-center">
+                                <p class="text-slate-600 text-sm">Potential Earnings</p>
+                                <p id="offer-3-earnings" class="text-4xl font-bold text-slate-800 my-2">$300,000</p>
+                            </div>
+                            <ul class="mt-6 space-y-3 text-sm">
+                                <li class="flex items-center"><span class="w-4 h-4 rounded-full bg-slate-200 mr-3 flex-shrink-0"></span><span class="font-semibold mr-2">$0</span> Base Salary</li>
+                                <li class="flex items-center"><span class="w-4 h-4 rounded-full bg-slate-200 mr-3 flex-shrink-0"></span><span class="font-semibold mr-2">40%</span> Personal Commission (Lifetime)</li>
+                                <li class="flex items-center"><span class="w-4 h-4 rounded-full bg-slate-200 mr-3 flex-shrink-0"></span><span class="font-semibold mr-2">5%</span> Team Override (Lifetime)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="earnings-chart" class="bg-white p-8 rounded-2xl shadow-sm border border-slate-200/80 max-w-4xl mx-auto mb-16">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-6 text-center">Earnings Projection Visualizer</h3>
+                    <div class="chart-container">
+                        <canvas id="compensationChart"></canvas>
+                    </div>
+                </section>
+
+                <section id="long-term-value" class="max-w-3xl mx-auto text-center">
+                    <h3 class="text-3xl font-bold text-slate-900">Your Stake in Our Success</h3>
+                    <p class="mt-3 text-lg text-slate-600 leading-relaxed">
+                        As a foundational member of the leadership team, you will be eligible to participate in Maven's future employee stock option plan. We believe those who build the company should share in its success.
+                    </p>
+                    <p class="mt-4 text-md font-semibold text-indigo-600 bg-indigo-50 inline-block p-3 rounded-lg">Details on the equity plan will be provided as it is formalized.</p>
+                </section>
+            </main>
+
+            <footer class="text-center mt-20 pt-10 border-t border-slate-200">
+                <h4 class="text-2xl font-bold text-slate-900">Ready to Discuss?</h4>
+                <p class="mt-3 text-slate-600">We are excited about the possibility of you joining our team. Please review this proposal,<br>and let's schedule a time to connect this week.</p>
+                <p class="mt-6 font-semibold text-slate-800">Jordan Kapper, MD & Sean Graham, CPA</p>
+                <p class="text-sm text-slate-500">Maven Cost Segregation</p>
+            </footer>
+
+        </div>
     </div>
 
     <script>
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const passwordOverlay = document.getElementById('password-overlay');
+            const passwordInput = document.getElementById('password-input');
+            const passwordSubmit = document.getElementById('password-submit');
+            const passwordError = document.getElementById('password-error');
+            const mainContent = document.getElementById('main-content'); // Correctly references the main content wrapper
+
+            const ACCESS_CODE = 'maven2025';
+
+            function checkPassword() {
+                if (passwordInput.value === ACCESS_CODE) {
+                    passwordOverlay.classList.add('hidden');
+                    mainContent.classList.remove('hidden'); // Show the main content
+                } else {
+                    passwordError.textContent = 'Incorrect password. Please try again.';
+                    passwordInput.value = '';
+                    passwordInput.focus();
+                }
+            }
+
+            passwordSubmit.addEventListener('click', checkPassword);
+            passwordInput.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter') {
+                    checkPassword();
+                }
+            });
+            passwordInput.focus();
+        });
+
         document.addEventListener('DOMContentLoaded', () => {
             const slider = document.getElementById('sales-slider');
             const sliderValueDisplay = document.getElementById('slider-value');
@@ -314,16 +351,16 @@
                 compensationChart.data.datasets[0].data = [earnings1, earnings2, earnings3];
                 compensationChart.update();
             };
-
+            
             slider.addEventListener('input', (event) => {
                 const sales = parseInt(event.target.value);
                 updateUI(sales);
             });
             
+            // Initialize with current slider value
             updateUI(parseInt(slider.value));
         });
     </script>
 
 </body>
 </html>
-
